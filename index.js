@@ -7,20 +7,24 @@ const { client, config } = require("./lib");
 
 const startBot = async () => {
   try {
-    // Connect to database
-    if (config && config.DATABASE) {
+    // Show startup log
+    console.log("🚀 Launching THE-LEGENDARY-N1L-BOT...");
+
+    // Handle DATABASE setup (if available)
+    if (config && config.DATABASE && typeof config.DATABASE.sync === 'function') {
       await config.DATABASE.sync();
+      console.log("📦 Database synced successfully!");
     } else {
-      throw new Error("❌ DATABASE config not found.");
+      console.warn("⚠ No DATABASE sync found — skipping DB connection.");
     }
 
-    // Initialize and start the bot
-    const Client = new client(); // Ensure 'client' is a class, not a function
-    Client.log("🚀 Launching THE-LEGENDARY-N1L-BOT...");
-
+    // Start bot
+    const Client = new client();
     if (Client.startServer) await Client.startServer();
     if (Client.WriteSession) await Client.WriteSession();
     if (Client.WaConnect) await Client.WaConnect();
+
+    console.log("✅ Bot started successfully!");
 
   } catch (error) {
     console.error("❌ Bot Startup Error:", error.message || error);
