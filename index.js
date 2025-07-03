@@ -11,10 +11,10 @@ const startBot = async () => {
       console.warn("⚠ No DATABASE sync found — skipping DB connection.");
     }
 
-    const Client = new client();
-    if (Client.startServer) await Client.startServer();
-    if (Client.WriteSession) await Client.WriteSession();
-    if (Client.WaConnect) await Client.WaConnect();
+    const ClientInstance = new client(); // 🔁 Fixed class naming (capitalized 'ClientInstance')
+    if (ClientInstance.startServer) await ClientInstance.startServer();
+    if (ClientInstance.WriteSession) await ClientInstance.WriteSession();
+    if (ClientInstance.WaConnect) await ClientInstance.WaConnect();
 
     console.log("✅ Bot started successfully!");
 
