@@ -1,4 +1,4 @@
-# PowerShell mein
+# PowerShell command for app.js
 echo "const { makeWASocket, useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion } = require('@whiskeysockets/baileys');
 const pino = require('pino');
 const qrcode = require('qrcode-terminal');
