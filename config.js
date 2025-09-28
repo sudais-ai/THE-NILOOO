@@ -1,10 +1,9 @@
 const { Sequelize } = require('sequelize');
-const { loadEnv } = require("jarvis-md");
 const fs = require('fs');
 
 if (fs.existsSync('config.env')) {
-  loadEnv('config.env');
-};
+  require('dotenv').config({ path: './config.env' });
+}
 
 global.api = 'https://enthusiastic-ag-lokiking-524102b4.koyeb.app/';
 
